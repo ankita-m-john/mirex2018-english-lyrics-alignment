@@ -76,7 +76,7 @@ if exit_code != 0:
 
 if do_vnv:
     subprocess.call([
-        'python3', 'goVnv.py', vnv_model, '--overwrite_output', '-i', tmp_wav_file, '-o', tmp_vnv_txt
+        'py', 'goVnv.py', vnv_model, '--overwrite_output', '-i', tmp_wav_file, '-o', tmp_vnv_txt
     ])
     # Read files
     vnv_result = np.loadtxt(tmp_vnv_txt)

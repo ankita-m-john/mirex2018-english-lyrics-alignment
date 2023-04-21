@@ -102,7 +102,7 @@ def run(args):
     else:
         raise Exception('Unimplemented or unsupported netType: ' + netType)
 
-    transProbMatVnv = np.load(os.apth.join(modelDir, 'trans_vnv.npy'))
+    transProbMatVnv = np.load(os.path.join(modelDir, 'trans_vnv.npy'))
 
     # --- Restore session
     modelName = 'model{}.ckpt'.format(modelPostfix)
