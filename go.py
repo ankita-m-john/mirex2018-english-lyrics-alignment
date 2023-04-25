@@ -26,12 +26,12 @@ if sys.version_info.major != 3:
     raise Exception('This program uses Python3.')
 
 add_sil_at_line_end = True
-vnv_model = 'vnv_model'
+vnv_model = 'lyricalignment/vnv_model'
 do_vnv = True
 vnv_hop = 160
 
 song_name = args.input_audio.split('/')[-1].split('.')[0]
-tmp_dir = 'tmp_{}_{}'.format(song_name, ''.join(random.choice(
+tmp_dir = 'lyricalignment/'+'tmp_{}_{}'.format(song_name, ''.join(random.choice(
     string.ascii_uppercase + string.digits) for _ in range(5))
 )
 if os.path.isdir(tmp_dir):
@@ -48,10 +48,10 @@ tmp_dic_file = os.path.join(tmp_dir, 'tmp.dic')
 tmp_vnv_txt = os.path.join(tmp_dir, 'tmp.vnv.txt')
 tmp_vnv_wav = os.path.join(tmp_dir, 'tmp.vnv.wav')
 
-cfg_file = os.path.join(args.model_dir, 'mfcc39.edaz.cfg')
-dic_file = os.path.join(args.model_dir, 'dic.dic')
-model_file = os.path.join(args.model_dir, 'model_list.model')
-macro_file = os.path.join(args.model_dir, 'macro.final')
+cfg_file = os.path.join('lyricalignment/'+args.model_dir, 'mfcc39.edaz.cfg')
+dic_file = os.path.join('lyricalignment/'+args.model_dir, 'dic.dic')
+model_file = os.path.join('lyricalignment/'+args.model_dir, 'model_list.model')
+macro_file = os.path.join('lyricalignment/'+ args.model_dir, 'macro.final')
 
 # Read dict
 try:
@@ -76,7 +76,7 @@ if exit_code != 0:
 
 if do_vnv:
     subprocess.call([
-        'py', 'goVnv.py', vnv_model, '--overwrite_output', '-i', tmp_wav_file, '-o', tmp_vnv_txt
+        'py', 'lyricalignment/goVnv.py', vnv_model, '--overwrite_output', '-i', tmp_wav_file, '-o', tmp_vnv_txt
     ])
     # Read files
     vnv_result = np.loadtxt(tmp_vnv_txt)
